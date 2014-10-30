@@ -64,7 +64,7 @@ function sendEmails(userName, userMail, msg) {
   }
 }
 
-// onFormSubmitに Spredsheet フォーム送信時 のトリガーを登録する
+// onFormSubmitに フォームから フォーム送信時 のトリガーを登録する
 function onFormSubmitに(e) {
   var itemResponses = e.response.getItemResponses();
   var userName = '';

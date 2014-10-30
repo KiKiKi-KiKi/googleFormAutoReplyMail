@@ -65,7 +65,7 @@ function sendMail(id, userName, userMail, msg) {
   }
 }
 
-// onFormSubmitに Spredsheet フォーム送信時 のトリガーを登録する
+// onFormSubmitに スプレットシートから フォーム送信時 のトリガーを登録する
 function onFormSubmit(event) {
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = spreadsheet.getSheetByName("フォームの回答");
