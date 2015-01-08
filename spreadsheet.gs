@@ -12,6 +12,9 @@ var _formLabels = {
   email: '連絡先'
 };
 
+// 回答のスプレットシートのシート名
+var _sheetName = 'フォームの回答';
+
 // メール本文を作成して返す
 function mailBodyTemplate(userName, msg) {
   var body = userName + '様 \n'
@@ -68,14 +71,16 @@ function sendMail(id, userName, userMail, msg) {
 // onFormSubmitに スプレットシートから フォーム送信時 のトリガーを登録する
 function onFormSubmit(event) {
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = spreadsheet.getSheetByName("フォームの回答");
+  var sheet = spreadsheet.getSheetByName( _sheetName );
   var id = sheet.getLastRow() - 1;
-  var userName = event.namedValues['名前'];
-  var userMail = event.namedValues['連絡先'];
+  var userName = event.namedValues[ _formLabels.name ];
+  var userMail = event.namedValues[ _formLabels.email ];
+  // 返信メッセージ
+  //   返信する内容に合わせて編集して下さい。
   var message = '予約番号: ' + id + '\n'
   + '名前: ' + userName + '\n'
   + '連絡先: ' + userMail + '\n'
   + 'メッセージ: \n' + event.namedValues['メッセージ'] + '\n';
-
+  // event.namedValues['フォームの設問のラベル'] で回答が取得できます。
   sendMail(id, userName, userMail, message);
 }
